@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 
 #include <string.h>
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -97,9 +98,10 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  char msg[] = "Hello, Wokwi!\r\n";
+  char msg[] = ".. Seems ok! but i beg you, work and progress. There is no way!\r\n";
+  char asd[3];
+  sprintf(asd, "%s", "AB");
   HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,7 +109,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    HAL_Delay(1000);
+    HAL_UART_Transmit(&huart2, (uint8_t*)asd, strlen(asd), HAL_MAX_DELAY);
+    HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
