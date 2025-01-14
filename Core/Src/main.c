@@ -100,6 +100,7 @@ int main(void)
 
   char msg[] = ".. Seems ok! but i beg you, work and progress. There is no way!\r\n";
   char asd[3];
+  char pin_stat = 0;
   sprintf(asd, "%s", "AB");
   HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
   /* USER CODE END 2 */
@@ -111,6 +112,14 @@ int main(void)
     /* USER CODE END WHILE */
     HAL_Delay(1000);
     HAL_UART_Transmit(&huart2, (uint8_t*)asd, strlen(asd), HAL_MAX_DELAY);
+    if(pin_stat == 0){
+      HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin_4, GPIO_PIN_RESET);
+      pin_stat = 1;
+    }
+    else {
+      HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin_4, GPIO_PIN_SET);
+      pin_stat = 0;
+    }
     HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
     /* USER CODE BEGIN 3 */
   }
@@ -255,7 +264,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin_4, GPIO_PIN_SET);
 
   /*Configure GPIO pin : User_Button_Pin */
   GPIO_InitStruct.Pin = User_Button_Pin;
@@ -264,11 +273,12 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Led_Pin */
-  GPIO_InitStruct.Pin = Led_Pin;
+  GPIO_InitStruct.Pin = Led_Pin_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(Led_GPIO_Port, &GPIO_InitStruct);
+
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
