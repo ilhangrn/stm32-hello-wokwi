@@ -1,25 +1,17 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "ilhan",
   "editor": "wokwi",
   "parts": [
     {
       "type": "board-st-nucleo-c031c6",
       "id": "nucleo",
-      "top": -47.17,
-      "left": -202.58,
+      "top": 0.83,
+      "left": -125.78,
       "attrs": {}
     },
-    { "type": "wokwi-ili9341", "id": "lcd2", "top": -37.6, "left": 95.7, "attrs": {} }
+    { "type": "wokwi-ili9341", "id": "lcd1", "top": -47.2, "left": 201.3, "attrs": {} }
   ],
-  "connections": [
-    [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
-    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
-    [ "nucleo:D2", "lcd2:D/C", "green", [ "h7.25", "v67.2", "h153.6" ] ],
-    [ "nucleo:D3", "lcd2:CS", "purple", [ "h12.05", "v67.2", "h120" ] ],
-    [ "nucleo:D13", "lcd2:SCK", "violet", [ "h7.25", "v-67.2", "h38.4", "v230.4", "h134.41" ] ],
-    [ "nucleo:D11", "lcd2:MOSI", "green", [ "h12.05", "v-76.8", "h43.2", "v211.2", "h115.2" ] ],
-    [ "nucleo:D12", "lcd2:MISO", "blue", [ "h-7.15", "v-86.4", "h72", "v220.8", "h134.41" ] ]
-  ],
+  "connections": [ [ "$serialMonitor:TX", "nucleo:PA3", "", [] ], [ "$serialMonitor:RX", "nucleo:PA2", "", [] ] ],
   "dependencies": {}
 }
