@@ -98,10 +98,10 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  char msg[] = ".. Seems ok! but i beg you, work and progress. There is no way!\r\n";
-  char asd[3];
+  char *msg = "Hello, ilhan, i run on stm32 simulation!\r\n";
+  // char err_code[3];
   char pin_stat = 0;
-  sprintf(asd, "%s", "AB");
+  // sprintf(err_code, "%s", "101");
   HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
   /* USER CODE END 2 */
 
@@ -111,7 +111,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
     HAL_Delay(1000);
-    HAL_UART_Transmit(&huart2, (uint8_t*)asd, strlen(asd), HAL_MAX_DELAY);
+    // HAL_UART_Transmit(&huart2, (uint8_t*)err_code, strlen(err_code), HAL_MAX_DELAY);
     if(pin_stat == 0){
       HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin_4, GPIO_PIN_RESET);
       pin_stat = 1;
