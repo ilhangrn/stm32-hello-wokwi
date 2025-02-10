@@ -1,0 +1,8 @@
+name: Serial test
+version: 1
+author: ilhan
+
+steps:
+  - wait-serial: "Hello"
+  # This call PASSED in command line, lets see how it is in github ci.
+  # wokwi-cli --expect-text "Hello" --timeout 600
