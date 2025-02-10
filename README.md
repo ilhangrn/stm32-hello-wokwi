@@ -78,7 +78,7 @@ steps:
 ```
 
 ```sh
-wokwi-cli --scenario serial.test.yaml
+wokwi-cli --scenario .\Integration_tests\serial.test.yaml
 ```
 
 > We can also have a direct call with line below. Having abc.test.yaml files helps better for future steps.
@@ -114,7 +114,7 @@ jobs:
           token: ${{ secrets.WOKWI_CLI_TOKEN }}
           path: /    # directory with wokwi.toml, relative to repo's root
           timeout: 600
-          scenario: 'serial.test.yaml'
+          scenario: 'Integration_tests/serial.test.yaml'
 ```
 
 > As you can see there is a detail as `secrets.WOKWI_CLI_TOKEN`. It is not that big secret. It is a secure-encrpty way of passing tokens to servers. To use it you need to add the token given by wokwi.
