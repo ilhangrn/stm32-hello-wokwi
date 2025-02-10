@@ -33,3 +33,27 @@ You can also debug the simulated project using the built-in debugger in Visual S
 3. Press **F5** to start the debugger.
 
 The debug configuration is already defined in the [.vscode/launch.json](.vscode/launch.json) file. For more information, see the [Wokwi for VS Code documentation](https://docs.wokwi.com/vscode/debugging).
+
+## Problems
+> There is a conflict for build directory. Wokwi simulation is looking for something different. So there are apporaches we can use.
+
+> Here is one approach for platformio projects. It is from [Leonid's guide for wokwi](https://blog.leon0399.ru/wokwi-platformio-github-actions?showSharer=true)
+``` sh
+[wokwi]
+version = 1
+firmware = "../../.pio/build/lucidgloves-prototype3/firmware.bin"
+elf = "../../.pio/build/lucidgloves-prototype3/firmware.elf"
+gdbServerPort=3333
+```
+
+> Here is my adaptation for STM32CUBECLT. I build project by CMakeTools extention on vscode. Do not forget to create directory and files as shown.
+```sh
+[wokwi]
+version = 1
+elf = "build/debug/build/stm32-hello-wokwi.elf"
+firmware = "build/debug/build/stm32-hello-wokwi.hex"
+gdbServerPort = 3333
+```
+
+> For now i depend on this toolchhain. In future i will run all in vscode and ubuntu WSL(again ubuntu in github CI) with ARM GCC toolchain or Rust. To be able to build and test platform indepently.`Vendor dependency is going to end`
+
